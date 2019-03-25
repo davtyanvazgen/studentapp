@@ -1,0 +1,24 @@
+@import url("https://fonts.googleapis.com/css?family=Kreon");
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: RGB(251, 251, 251) !important;
+  font-family: "Kreon" !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #ada996;
+  background: -webkit-linear-gradient(
+    to left,
+    #eaeaea,
+    #dbdbdb,
+    #f2f2f2,
+    #ada996
+  );
+  background: linear-gradient(to left, #eaeaea, #dbdbdb, #f2f2f2, #ada996);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
