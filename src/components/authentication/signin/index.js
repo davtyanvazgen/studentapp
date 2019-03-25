@@ -16,7 +16,7 @@ function SignIn({ firebase, auth }) {
         .auth()
         .signInWithEmailAndPassword(email, password)
         .then(() => {
-          window.location = "/registration";
+          window.location = "/studentapp";
         })
         .catch(err => {
           alert(err.message);
