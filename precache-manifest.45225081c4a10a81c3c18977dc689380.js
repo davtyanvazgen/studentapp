@@ -20,15 +20,15 @@ self.__precacheManifest = [
     "url": "/studentapp/static/js/runtime~main.05cf3504.js"
   },
   {
-    "revision": "46838f894cd8ba867c10",
-    "url": "/studentapp/static/js/main.46838f89.chunk.js"
+    "revision": "cfcd34d9b837064fba40",
+    "url": "/studentapp/static/js/main.cfcd34d9.chunk.js"
   },
   {
     "revision": "ca7c0c0ebf52cd2035ad",
     "url": "/studentapp/static/js/2.ca7c0c0e.chunk.js"
   },
   {
-    "revision": "46838f894cd8ba867c10",
+    "revision": "cfcd34d9b837064fba40",
     "url": "/studentapp/static/css/main.dd9e5dfc.chunk.css"
   },
   {
@@ -36,7 +36,7 @@ self.__precacheManifest = [
     "url": "/studentapp/static/css/2.21959d9f.chunk.css"
   },
   {
-    "revision": "73f726b025306667feaafe1e13a9623f",
+    "revision": "bb578cb9be21126420c8358e92573bb1",
     "url": "/studentapp/index.html"
   }
 ];
