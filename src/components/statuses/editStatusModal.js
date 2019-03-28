@@ -55,7 +55,7 @@ const EditStatusModal = ({ status, toggle, modal, firestore, students }) => {
 
   return (
     <Modal isOpen={modal} toggle={toggle} className="editDeleteModal">
-      <ModalHeader toggle={toggle}>ZVART Jan let's edit Status</ModalHeader>
+      <ModalHeader toggle={toggle}>Edit Status</ModalHeader>
       <ModalBody>
         <Form>
           <FormGroup>

@@ -72,12 +72,17 @@
 }
 
 .help {
-  margin: 50px auto;
-  color: red;
+  margin: 10px auto;
+  max-width: 900px;
+  color: rgb(84, 4, 189);
   text-align: center;
 }
 
+#info {
+  font-size: 13px;
+}
+
 .span {
-  color: blue;
+  color: rgb(255, 0, 76);
   font-size: 30px;
 }

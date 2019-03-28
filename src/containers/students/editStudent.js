@@ -26,7 +26,7 @@ function EditStudentModal(props) {
       .collection("students")
       .doc(props.student.id)
       .update({
-        fullName,
+        fullName: fullName.toUpperCase(),
         phone,
         email,
         comment

@@ -20,7 +20,7 @@ const AddCourse = props => {
         <Container>
           <Row>
             <Col className="center">
-              <h1>Current courses</h1>
+              <h1 className="title">Current courses</h1>
               <Button
                 className="addButton"
                 color="info"

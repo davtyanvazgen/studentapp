@@ -16,13 +16,9 @@ export default class DeleteStatusModal extends Component {
     const body = studentsSameStatus.length ? (
       <>
         <h4>
-          There are <b>{studentsSameStatus.length}</b> Students with{" "}
-          <b>{status.name}</b>
+          <b>{status.name}</b> has <b>{studentsSameStatus.length}</b> member(s).
         </h4>
-        <p>
-          if you delete this course you will lose{" "}
-          <b>{studentsSameStatus.length}</b> friends
-        </p>
+        <p>Are you sure ?</p>
       </>
     ) : (
       <h6>Do you want to delete this status ?</h6>

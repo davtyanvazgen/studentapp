@@ -19,7 +19,7 @@ const AddStatus = ({ statuses, students }) => {
       <Container>
         <Row>
           <Col className="center">
-            <h1>Current statuses</h1>
+            <h1 className="title">Current statuses</h1>
             <Button
               className="addButton"
               color="info"

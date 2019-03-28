@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import CoursesButtonGroup from "./coursesButtonGroup";
 import StatusesButton from "./statusesButtonGroup";
 import StudentCard from "./studentCard";
@@ -28,11 +28,6 @@ const Students = ({
   page,
   onPageClick
 }) => {
-  const [rSelected, setSelected] = useState(page);
-
-  const onRadioBtnClick = selected => {
-    setSelected(selected);
-  };
   if (students && courses && statuses) {
     const pages = [];
     for (let i = 1; i <= Math.ceil(students.length / 10); i++) {
@@ -122,7 +117,6 @@ const Students = ({
                     <Button
                       className="arrow"
                       onClick={() => {
-                        onRadioBtnClick(pages[0]);
                         onPageClick(pages[0]);
                       }}
                     >
@@ -133,10 +127,9 @@ const Students = ({
                         key={p}
                         color="dark"
                         onClick={() => {
-                          onRadioBtnClick(p);
                           onPageClick(p);
                         }}
-                        active={rSelected === p}
+                        active={page === p}
                       >
                         <span key={p}> {p} </span>
                       </Button>
@@ -144,7 +137,6 @@ const Students = ({
                     <Button
                       className="arrow"
                       onClick={() => {
-                        onRadioBtnClick(pages[pages.length - 1]);
                         onPageClick(pages[pages.length - 1]);
                       }}
                     >

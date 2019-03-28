@@ -24,6 +24,7 @@ const StudentCard = props => {
   const [isOpenCourse, setIsOpenCourse] = useState(false);
   const [collapse, setcollapse] = useState(false);
   const [modal, setModal] = useState(false);
+  const [modalEdit, setModalEdit] = useState(false);
   const [currentStatus, setCurrentStatus] = useState(
     statuses.filter(status => status.id === student.status)
   );
@@ -31,20 +32,14 @@ const StudentCard = props => {
     courses.filter(course => course.id === student.course)
   );
 
-  const [modalEdit, setModalEdit] = useState(false);
-
   function toggle() {
     setcollapse(!collapse);
   }
 
-  const toggleEdit = () => {
-    setModalEdit(!modalEdit);
-  };
-
   function handleRemove() {
     const storage = props.firebase.storage();
     const storageRef = storage.ref();
-    if (storageRef === undefined) {
+    if (student.imageName !== undefined) {
       storageRef
         .child(`studentsAvatar/${student.imageName}`)
         .delete()
@@ -85,6 +80,7 @@ const StudentCard = props => {
       .catch(err => {
         alert(err.message);
       });
+    mouseout();
   }
 
   function handleSelectStatusChange(e) {
@@ -103,6 +99,7 @@ const StudentCard = props => {
       .catch(err => {
         alert(err.message);
       });
+    mouseout();
   }
 
   function toggleStatus() {
@@ -111,9 +108,13 @@ const StudentCard = props => {
   function toggleCourse() {
     setIsOpenCourse(!isOpenCourse);
   }
-
   function toggleDeleteStudent() {
     setModal(!modal);
+    mouseout(id);
+  }
+  function toggleEdit() {
+    setModalEdit(!modalEdit);
+    mouseout(id);
   }
 
   const appData = `App date: ${student.date
@@ -123,7 +124,7 @@ const StudentCard = props => {
 
   function mouseover() {
     var element = document.getElementById(id);
-    element.style.border = "2px solid #1680D6";
+    element.style.border = "2px solid grey";
     element.style.backgroundColor = props.background;
   }
   function mouseout() {
@@ -245,17 +246,17 @@ const StudentCard = props => {
           <hr />
           <Row>
             <Col xs="12" md="4" className="center">
-              <span>Email: </span>
+              <span className="info">Email: </span>
               <br />
               {student.email}
             </Col>
             <Col xs="12" md="2" className="center">
-              <span>Phone: </span>
+              <span className="info">Phone: </span>
               <br />
               {student.phone}
             </Col>
             <Col xs="12" md="6" className="center">
-              <span>Knowledge: </span>
+              <span className="info">Knowledge: </span>
               <br />
               {student.knowledge}
             </Col>
@@ -263,7 +264,7 @@ const StudentCard = props => {
           <hr />
           <Row>
             <Col className="center">
-              <span>Comment: </span>
+              <span className="info">Comment: </span>
               {student.comment}
             </Col>
           </Row>

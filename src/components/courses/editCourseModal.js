@@ -55,7 +55,7 @@ const EditCourseModal = ({ course, toggle, modal, firestore, students }) => {
 
   return (
     <Modal isOpen={modal} toggle={toggle} className="editDeleteModal">
-      <ModalHeader toggle={toggle}>ZVART Jan let's edit course</ModalHeader>
+      <ModalHeader toggle={toggle}>Edit course</ModalHeader>
       <ModalBody>
         <Form>
           <FormGroup>

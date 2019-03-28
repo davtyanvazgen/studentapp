@@ -15,13 +15,9 @@ export default class DeleteCourseModal extends Component {
     const body = studentsSameCourse.length ? (
       <>
         <h4>
-          There are <b>{studentsSameCourse.length}</b> Students with{" "}
-          <b>{course.name}</b>
+          <b>{course.name}</b> has <b>{studentsSameCourse.length}</b> member(s).
         </h4>
-        <p>
-          if you delete this course you will lose{" "}
-          <b>{studentsSameCourse.length}</b> friends
-        </p>
+        <p>Are you sure ?</p>
       </>
     ) : (
       <h6>Do you want to delete this course ?</h6>

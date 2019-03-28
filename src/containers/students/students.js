@@ -14,32 +14,32 @@ const getShowStudents = (
   allStatuses
 ) => {
   selectedCourses = selectedCourses.filter(courseId => {
-    for(let i=0; i< allCourses.length; i++){
-      if(allCourses[i].id === courseId){
+    for (let i = 0; i < allCourses.length; i++) {
+      if (allCourses[i].id === courseId) {
         return true;
       }
     }
     return false;
   });
   selectedStatuses = selectedStatuses.filter(statusId => {
-    for(let i=0; i< allStatuses.length; i++){
-      if(allStatuses[i].id === statusId){
+    for (let i = 0; i < allStatuses.length; i++) {
+      if (allStatuses[i].id === statusId) {
         return true;
       }
     }
     return false;
   });
 
-  if(selectedStatuses.length && !selectedCourses.length){
+  if (selectedStatuses.length && !selectedCourses.length) {
     filter = visibilityFilters.SHOW_WITH_STATUS;
   }
-  if(!selectedStatuses.length && !selectedCourses.length){
+  if (!selectedStatuses.length && !selectedCourses.length) {
     filter = visibilityFilters.SHOW_ALL;
   }
-  if(selectedStatuses.length && selectedCourses.length){
+  if (selectedStatuses.length && selectedCourses.length) {
     filter = visibilityFilters.SHOW_WITH_COURSES_AND_STATUS;
   }
-  if(!selectedStatuses.length && selectedCourses.length){
+  if (!selectedStatuses.length && selectedCourses.length) {
     filter = visibilityFilters.SHOW_WITH_COURSES;
   }
   let filters = selectedStatuses.length
@@ -69,7 +69,6 @@ const searchStudents = (students, searchValue) => {
       return students;
     }
     let resultArr = [];
-    console.log(students);
     for (let i = 0; i < students.length; i++) {
       let counter = 0;
       for (let j = 0; j < searchValue.length; j++) {
@@ -85,18 +84,25 @@ const searchStudents = (students, searchValue) => {
   }
 };
 
-const filter = (searchValue, selectedCourses, selectedStatuses, allCourses, allStatuses, dispatch) => {
+const filter = (
+  searchValue,
+  selectedCourses,
+  selectedStatuses,
+  allCourses,
+  allStatuses,
+  dispatch
+) => {
   selectedCourses = selectedCourses.filter(courseId => {
-    for(let i=0; i< allCourses.length; i++){
-      if(allCourses[i].id === courseId){
+    for (let i = 0; i < allCourses.length; i++) {
+      if (allCourses[i].id === courseId) {
         return true;
       }
     }
     return false;
-  } );
+  });
   selectedStatuses = selectedStatuses.filter(statusId => {
-    for(let i=0; i< allStatuses.length; i++){
-      if(allStatuses[i].id === statusId){
+    for (let i = 0; i < allStatuses.length; i++) {
+      if (allStatuses[i].id === statusId) {
         return true;
       }
     }
@@ -129,7 +135,7 @@ const filter = (searchValue, selectedCourses, selectedStatuses, allCourses, allS
           selectedStatuses,
           selectedCourses,
           value,
-            1
+          1
         )
       );
     }
@@ -140,7 +146,7 @@ const filter = (searchValue, selectedCourses, selectedStatuses, allCourses, allS
           selectedStatuses,
           selectedCourses,
           value,
-            1
+          1
         )
       );
     }
@@ -151,7 +157,7 @@ const filter = (searchValue, selectedCourses, selectedStatuses, allCourses, allS
           selectedStatuses,
           selectedCourses,
           value,
-            1
+          1
         )
       );
     }
@@ -162,64 +168,71 @@ const filter = (searchValue, selectedCourses, selectedStatuses, allCourses, allS
           selectedStatuses,
           selectedCourses,
           value,
-            1
+          1
         )
       );
     }
   };
 };
 
-function onPageClick(pageValue, filter, searchValue, selectedCourses, selectedStatuses, dispatch){
-    return function(page = pageValue, fil = filter,  search = searchValue, courses = selectedCourses, statuses = selectedStatuses) {
-      dispatch(
-            setFilter(
-                fil,
-                statuses,
-                courses,
-                search,
-                page)
-        );
-    }
+function onPageClick(
+  pageValue,
+  filter,
+  searchValue,
+  selectedCourses,
+  selectedStatuses,
+  dispatch
+) {
+  return function(
+    page = pageValue,
+    fil = filter,
+    search = searchValue,
+    courses = selectedCourses,
+    statuses = selectedStatuses
+  ) {
+    dispatch(setFilter(fil, statuses, courses, search, page));
+  };
 }
 
 export default compose(
-    firestoreConnect(() => [
-        {collection: "students", orderBy: "date"},
-        {collection: "courses", orderBy: "sort"},
-        {collection: "statuses", orderBy: "sort"},
-    ]),
-    connect((state, props) => ({
-      searchValue: state.filter.searchValue,
-      filterStudents: filter(
-          state.filter.searchValue,
-          state.filter.selectedCourses,
-          state.filter.selectedStatuses,
-          state.firestore.ordered.courses,
-          state.firestore.ordered.statuses,
-          props.dispatch
+  firestoreConnect(() => [
+    { collection: "students", orderBy: "date" },
+    { collection: "courses", orderBy: "sort" },
+    { collection: "statuses", orderBy: "sort" }
+  ]),
+  connect((state, props) => ({
+    searchValue: state.filter.searchValue,
+    filterStudents: filter(
+      state.filter.searchValue,
+      state.filter.selectedCourses,
+      state.filter.selectedStatuses,
+      state.firestore.ordered.courses,
+      state.firestore.ordered.statuses,
+      props.dispatch
+    ),
+    students: searchStudents(
+      getShowStudents(
+        state.firestore.ordered.students,
+        state.filter.filter,
+        state.filter.selectedCourses,
+        state.filter.selectedStatuses,
+        state.firestore.ordered.courses,
+        state.firestore.ordered.statuses
       ),
-      students: searchStudents(
-          getShowStudents(
-              state.firestore.ordered.students,
-              state.filter.filter,
-              state.filter.selectedCourses,
-              state.filter.selectedStatuses,
-              state.firestore.ordered.courses,
-              state.firestore.ordered.statuses
-        ),
-          state.filter.searchValue
-      ),
-      courses: state.firestore.ordered.courses,
-      statuses: state.firestore.ordered.statuses,
-      allStudents: state.firestore.ordered.students,
-      background: "#ffffff",
-      page: state.filter.pageValue,
-      onPageClick: onPageClick(
-          state.filter.pageValue,
-          state.filter.filter,
-          state.filter.searchValue,
-          state.filter.selectedCourses,
-          state.filter.selectedStatuses,
-          props.dispatch )
+      state.filter.searchValue
+    ),
+    courses: state.firestore.ordered.courses,
+    statuses: state.firestore.ordered.statuses,
+    allStudents: state.firestore.ordered.students,
+    background: "#ffffff",
+    page: state.filter.pageValue,
+    onPageClick: onPageClick(
+      state.filter.pageValue,
+      state.filter.filter,
+      state.filter.searchValue,
+      state.filter.selectedCourses,
+      state.filter.selectedStatuses,
+      props.dispatch
+    )
   }))
 )(Students);

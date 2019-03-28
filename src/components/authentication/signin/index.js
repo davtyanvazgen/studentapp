@@ -36,6 +36,19 @@ function SignIn({ firebase, auth }) {
   return (
     <>
       <div className="help">
+        <p id="info">
+          The app is designed to help ACA(Armenian Code Academy) coordinate
+          students admission process. ACA used to coordinate the information of
+          their students manually and we decided to create an application for
+          them to facilitate their work. Now using this application it became
+          easy to keep track of registered students and make changes to their
+          information. After sign in you will see several students who have
+          registered for different lessons and you can change their information.
+          Also you can add, delete and sort lessons and statuses. You can't add
+          student because only I can add new student :)
+          <br />
+          (this is a demo.)
+        </p>
         <h4>
           In the email field enter <span className="span">admin@am.com</span>
         </h4>
@@ -54,7 +67,7 @@ function SignIn({ firebase, auth }) {
                 type="email"
                 name="email"
                 onChange={handleEmail}
-                placeholder="admin@am.com"
+                placeholder="Enter email"
               />
             </FormGroup>
             <FormGroup>
@@ -64,7 +77,7 @@ function SignIn({ firebase, auth }) {
                 type="password"
                 name="password"
                 onChange={handlePassword}
-                placeholder="admin2019"
+                placeholder="Enter password"
               />
             </FormGroup>
             <Button color="success" type="submit" block>

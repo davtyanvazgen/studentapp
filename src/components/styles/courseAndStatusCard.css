@@ -12,6 +12,12 @@
 .center {
   text-align: center;
 }
+
+.title {
+  margin-top: 15px;
+  color: rgb(16, 10, 100);
+}
+
 .addButton {
   float: right;
 }
@@ -22,6 +28,7 @@
 
 .martop {
   margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 .card {
