@@ -167,7 +167,7 @@ const Status = ({ statuses, status, firestore, students, firebase }) => {
             <strong>{status.longName}</strong>
           </CardText>
           <div className="deleteEdit">
-            {status.id !== "fc4a5a70-4739-11e9-8e2b-71e4e6f455b5" ? (
+            {status.id !== "a96b5820-4e52-11e9-b219-e1513e786dc2" ? (
               <>
                 <Button
                   size="sm"
